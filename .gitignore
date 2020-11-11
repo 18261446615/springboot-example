@@ -1,0 +1,7 @@
+/.idea
+/*.iml
+/lwc-api/target
+/lwc-base/target
+/lwc-channel/target
+/**/target
+/logs

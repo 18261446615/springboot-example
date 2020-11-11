@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.base.mapper.AomengOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.example.base.entity.AomengOrder" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="actionId" property="actionid" jdbcType="INTEGER" />
+    <result column="course_type_id" property="courseTypeId" jdbcType="VARCHAR" />
+    <result column="order_time" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="sale_name" property="saleName" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="INTEGER" />
+    <result column="buy_class" property="buyClass" jdbcType="INTEGER" />
+    <result column="teacher_id" property="teacherId" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="student_id" property="studentId" jdbcType="VARCHAR" />
+    <result column="unit_price" property="unitPrice" jdbcType="DOUBLE" />
+    <result column="is_send_gold" property="isSendGold" jdbcType="INTEGER" />
+    <result column="exchange_order_id" property="exchangeOrderId" jdbcType="VARCHAR" />
+    <result column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="unusedet_order_id" property="unusedetOrderId" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="contract_status" property="contractStatus" jdbcType="VARCHAR" />
+    <result column="lesson_id" property="lessonId" jdbcType="VARCHAR" />
+    <result column="student_num" property="studentNum" jdbcType="INTEGER" />
+    <result column="contract_extra" property="contractExtra" jdbcType="VARCHAR" />
+    <result column="cancel_note" property="cancelNote" jdbcType="VARCHAR" />
+    <result column="creator_id" property="creatorId" jdbcType="VARCHAR" />
+    <result column="remove_class" property="removeClass" jdbcType="INTEGER" />
+    <result column="card_name" property="cardName" jdbcType="VARCHAR" />
+    <result column="card_idcard_number" property="cardIdcardNumber" jdbcType="VARCHAR" />
+    <result column="sign_time" property="signTime" jdbcType="TIMESTAMP" />
+    <result column="sign_ip" property="signIp" jdbcType="VARCHAR" />
+    <result column="crm_order_id" property="crmOrderId" jdbcType="VARCHAR" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <result column="invoice" property="invoice" jdbcType="INTEGER" />
+    <result column="lnvicestate" property="lnvicestate" jdbcType="TINYINT" />
+    <result column="give_reason" property="giveReason" jdbcType="VARCHAR" />
+    <result column="channel_batch_id" property="channelBatchId" jdbcType="INTEGER" />
+    <result column="channel_batch_name" property="channelBatchName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, actionId, course_type_id, order_time, sale_name, money, buy_class, teacher_id, 
+    type, student_id, unit_price, is_send_gold, exchange_order_id, uuid, unusedet_order_id, 
+    note, contract_status, lesson_id, student_num, contract_extra, cancel_note, creator_id, 
+    remove_class, card_name, card_idcard_number, sign_time, sign_ip, crm_order_id, order_status, 
+    invoice, lnvicestate, give_reason, channel_batch_id, channel_batch_name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.example.base.entity.AomengOrderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from aomeng_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from aomeng_order
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from aomeng_order
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.example.base.entity.AomengOrderExample" >
+    delete from aomeng_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.example.base.entity.AomengOrder" >
+    insert into aomeng_order (id, actionId, course_type_id, 
+      order_time, sale_name, money, 
+      buy_class, teacher_id, type, 
+      student_id, unit_price, is_send_gold, 
+      exchange_order_id, uuid, unusedet_order_id, 
+      note, contract_status, lesson_id, 
+      student_num, contract_extra, cancel_note, 
+      creator_id, remove_class, card_name, 
+      card_idcard_number, sign_time, sign_ip, 
+      crm_order_id, order_status, invoice, 
+      lnvicestate, give_reason, channel_batch_id, 
+      channel_batch_name)
+    values (#{id,jdbcType=VARCHAR}, #{actionid,jdbcType=INTEGER}, #{courseTypeId,jdbcType=VARCHAR}, 
+      #{orderTime,jdbcType=TIMESTAMP}, #{saleName,jdbcType=VARCHAR}, #{money,jdbcType=INTEGER}, 
+      #{buyClass,jdbcType=INTEGER}, #{teacherId,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{studentId,jdbcType=VARCHAR}, #{unitPrice,jdbcType=DOUBLE}, #{isSendGold,jdbcType=INTEGER}, 
+      #{exchangeOrderId,jdbcType=VARCHAR}, #{uuid,jdbcType=VARCHAR}, #{unusedetOrderId,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{contractStatus,jdbcType=VARCHAR}, #{lessonId,jdbcType=VARCHAR}, 
+      #{studentNum,jdbcType=INTEGER}, #{contractExtra,jdbcType=VARCHAR}, #{cancelNote,jdbcType=VARCHAR}, 
+      #{creatorId,jdbcType=VARCHAR}, #{removeClass,jdbcType=INTEGER}, #{cardName,jdbcType=VARCHAR}, 
+      #{cardIdcardNumber,jdbcType=VARCHAR}, #{signTime,jdbcType=TIMESTAMP}, #{signIp,jdbcType=VARCHAR}, 
+      #{crmOrderId,jdbcType=VARCHAR}, #{orderStatus,jdbcType=INTEGER}, #{invoice,jdbcType=INTEGER}, 
+      #{lnvicestate,jdbcType=TINYINT}, #{giveReason,jdbcType=VARCHAR}, #{channelBatchId,jdbcType=INTEGER}, 
+      #{channelBatchName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.base.entity.AomengOrder" >
+    insert into aomeng_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="actionid != null" >
+        actionId,
+      </if>
+      <if test="courseTypeId != null" >
+        course_type_id,
+      </if>
+      <if test="orderTime != null" >
+        order_time,
+      </if>
+      <if test="saleName != null" >
+        sale_name,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="buyClass != null" >
+        buy_class,
+      </if>
+      <if test="teacherId != null" >
+        teacher_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="studentId != null" >
+        student_id,
+      </if>
+      <if test="unitPrice != null" >
+        unit_price,
+      </if>
+      <if test="isSendGold != null" >
+        is_send_gold,
+      </if>
+      <if test="exchangeOrderId != null" >
+        exchange_order_id,
+      </if>
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="unusedetOrderId != null" >
+        unusedet_order_id,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="contractStatus != null" >
+        contract_status,
+      </if>
+      <if test="lessonId != null" >
+        lesson_id,
+      </if>
+      <if test="studentNum != null" >
+        student_num,
+      </if>
+      <if test="contractExtra != null" >
+        contract_extra,
+      </if>
+      <if test="cancelNote != null" >
+        cancel_note,
+      </if>
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="removeClass != null" >
+        remove_class,
+      </if>
+      <if test="cardName != null" >
+        card_name,
+      </if>
+      <if test="cardIdcardNumber != null" >
+        card_idcard_number,
+      </if>
+      <if test="signTime != null" >
+        sign_time,
+      </if>
+      <if test="signIp != null" >
+        sign_ip,
+      </if>
+      <if test="crmOrderId != null" >
+        crm_order_id,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="invoice != null" >
+        invoice,
+      </if>
+      <if test="lnvicestate != null" >
+        lnvicestate,
+      </if>
+      <if test="giveReason != null" >
+        give_reason,
+      </if>
+      <if test="channelBatchId != null" >
+        channel_batch_id,
+      </if>
+      <if test="channelBatchName != null" >
+        channel_batch_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="actionid != null" >
+        #{actionid,jdbcType=INTEGER},
+      </if>
+      <if test="courseTypeId != null" >
+        #{courseTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saleName != null" >
+        #{saleName,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="buyClass != null" >
+        #{buyClass,jdbcType=INTEGER},
+      </if>
+      <if test="teacherId != null" >
+        #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="studentId != null" >
+        #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null" >
+        #{unitPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="isSendGold != null" >
+        #{isSendGold,jdbcType=INTEGER},
+      </if>
+      <if test="exchangeOrderId != null" >
+        #{exchangeOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="unusedetOrderId != null" >
+        #{unusedetOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="contractStatus != null" >
+        #{contractStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lessonId != null" >
+        #{lessonId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentNum != null" >
+        #{studentNum,jdbcType=INTEGER},
+      </if>
+      <if test="contractExtra != null" >
+        #{contractExtra,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelNote != null" >
+        #{cancelNote,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="removeClass != null" >
+        #{removeClass,jdbcType=INTEGER},
+      </if>
+      <if test="cardName != null" >
+        #{cardName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardIdcardNumber != null" >
+        #{cardIdcardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="signTime != null" >
+        #{signTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signIp != null" >
+        #{signIp,jdbcType=VARCHAR},
+      </if>
+      <if test="crmOrderId != null" >
+        #{crmOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="invoice != null" >
+        #{invoice,jdbcType=INTEGER},
+      </if>
+      <if test="lnvicestate != null" >
+        #{lnvicestate,jdbcType=TINYINT},
+      </if>
+      <if test="giveReason != null" >
+        #{giveReason,jdbcType=VARCHAR},
+      </if>
+      <if test="channelBatchId != null" >
+        #{channelBatchId,jdbcType=INTEGER},
+      </if>
+      <if test="channelBatchName != null" >
+        #{channelBatchName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.example.base.entity.AomengOrderExample" resultType="java.lang.Integer" >
+    select count(*) from aomeng_order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update aomeng_order
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.actionid != null" >
+        actionId = #{record.actionid,jdbcType=INTEGER},
+      </if>
+      <if test="record.courseTypeId != null" >
+        course_type_id = #{record.courseTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderTime != null" >
+        order_time = #{record.orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.saleName != null" >
+        sale_name = #{record.saleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.money != null" >
+        money = #{record.money,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyClass != null" >
+        buy_class = #{record.buyClass,jdbcType=INTEGER},
+      </if>
+      <if test="record.teacherId != null" >
+        teacher_id = #{record.teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentId != null" >
+        student_id = #{record.studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unitPrice != null" >
+        unit_price = #{record.unitPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.isSendGold != null" >
+        is_send_gold = #{record.isSendGold,jdbcType=INTEGER},
+      </if>
+      <if test="record.exchangeOrderId != null" >
+        exchange_order_id = #{record.exchangeOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uuid != null" >
+        uuid = #{record.uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unusedetOrderId != null" >
+        unusedet_order_id = #{record.unusedetOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.note != null" >
+        note = #{record.note,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contractStatus != null" >
+        contract_status = #{record.contractStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lessonId != null" >
+        lesson_id = #{record.lessonId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.studentNum != null" >
+        student_num = #{record.studentNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.contractExtra != null" >
+        contract_extra = #{record.contractExtra,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cancelNote != null" >
+        cancel_note = #{record.cancelNote,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creatorId != null" >
+        creator_id = #{record.creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.removeClass != null" >
+        remove_class = #{record.removeClass,jdbcType=INTEGER},
+      </if>
+      <if test="record.cardName != null" >
+        card_name = #{record.cardName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardIdcardNumber != null" >
+        card_idcard_number = #{record.cardIdcardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signTime != null" >
+        sign_time = #{record.signTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.signIp != null" >
+        sign_ip = #{record.signIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.crmOrderId != null" >
+        crm_order_id = #{record.crmOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderStatus != null" >
+        order_status = #{record.orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.invoice != null" >
+        invoice = #{record.invoice,jdbcType=INTEGER},
+      </if>
+      <if test="record.lnvicestate != null" >
+        lnvicestate = #{record.lnvicestate,jdbcType=TINYINT},
+      </if>
+      <if test="record.giveReason != null" >
+        give_reason = #{record.giveReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelBatchId != null" >
+        channel_batch_id = #{record.channelBatchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.channelBatchName != null" >
+        channel_batch_name = #{record.channelBatchName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update aomeng_order
+    set id = #{record.id,jdbcType=VARCHAR},
+      actionId = #{record.actionid,jdbcType=INTEGER},
+      course_type_id = #{record.courseTypeId,jdbcType=VARCHAR},
+      order_time = #{record.orderTime,jdbcType=TIMESTAMP},
+      sale_name = #{record.saleName,jdbcType=VARCHAR},
+      money = #{record.money,jdbcType=INTEGER},
+      buy_class = #{record.buyClass,jdbcType=INTEGER},
+      teacher_id = #{record.teacherId,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=VARCHAR},
+      student_id = #{record.studentId,jdbcType=VARCHAR},
+      unit_price = #{record.unitPrice,jdbcType=DOUBLE},
+      is_send_gold = #{record.isSendGold,jdbcType=INTEGER},
+      exchange_order_id = #{record.exchangeOrderId,jdbcType=VARCHAR},
+      uuid = #{record.uuid,jdbcType=VARCHAR},
+      unusedet_order_id = #{record.unusedetOrderId,jdbcType=VARCHAR},
+      note = #{record.note,jdbcType=VARCHAR},
+      contract_status = #{record.contractStatus,jdbcType=VARCHAR},
+      lesson_id = #{record.lessonId,jdbcType=VARCHAR},
+      student_num = #{record.studentNum,jdbcType=INTEGER},
+      contract_extra = #{record.contractExtra,jdbcType=VARCHAR},
+      cancel_note = #{record.cancelNote,jdbcType=VARCHAR},
+      creator_id = #{record.creatorId,jdbcType=VARCHAR},
+      remove_class = #{record.removeClass,jdbcType=INTEGER},
+      card_name = #{record.cardName,jdbcType=VARCHAR},
+      card_idcard_number = #{record.cardIdcardNumber,jdbcType=VARCHAR},
+      sign_time = #{record.signTime,jdbcType=TIMESTAMP},
+      sign_ip = #{record.signIp,jdbcType=VARCHAR},
+      crm_order_id = #{record.crmOrderId,jdbcType=VARCHAR},
+      order_status = #{record.orderStatus,jdbcType=INTEGER},
+      invoice = #{record.invoice,jdbcType=INTEGER},
+      lnvicestate = #{record.lnvicestate,jdbcType=TINYINT},
+      give_reason = #{record.giveReason,jdbcType=VARCHAR},
+      channel_batch_id = #{record.channelBatchId,jdbcType=INTEGER},
+      channel_batch_name = #{record.channelBatchName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.base.entity.AomengOrder" >
+    update aomeng_order
+    <set >
+      <if test="actionid != null" >
+        actionId = #{actionid,jdbcType=INTEGER},
+      </if>
+      <if test="courseTypeId != null" >
+        course_type_id = #{courseTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        order_time = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saleName != null" >
+        sale_name = #{saleName,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="buyClass != null" >
+        buy_class = #{buyClass,jdbcType=INTEGER},
+      </if>
+      <if test="teacherId != null" >
+        teacher_id = #{teacherId,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="studentId != null" >
+        student_id = #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null" >
+        unit_price = #{unitPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="isSendGold != null" >
+        is_send_gold = #{isSendGold,jdbcType=INTEGER},
+      </if>
+      <if test="exchangeOrderId != null" >
+        exchange_order_id = #{exchangeOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="uuid != null" >
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="unusedetOrderId != null" >
+        unusedet_order_id = #{unusedetOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="contractStatus != null" >
+        contract_status = #{contractStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="lessonId != null" >
+        lesson_id = #{lessonId,jdbcType=VARCHAR},
+      </if>
+      <if test="studentNum != null" >
+        student_num = #{studentNum,jdbcType=INTEGER},
+      </if>
+      <if test="contractExtra != null" >
+        contract_extra = #{contractExtra,jdbcType=VARCHAR},
+      </if>
+      <if test="cancelNote != null" >
+        cancel_note = #{cancelNote,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null" >
+        creator_id = #{creatorId,jdbcType=VARCHAR},
+      </if>
+      <if test="removeClass != null" >
+        remove_class = #{removeClass,jdbcType=INTEGER},
+      </if>
+      <if test="cardName != null" >
+        card_name = #{cardName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardIdcardNumber != null" >
+        card_idcard_number = #{cardIdcardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="signTime != null" >
+        sign_time = #{signTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signIp != null" >
+        sign_ip = #{signIp,jdbcType=VARCHAR},
+      </if>
+      <if test="crmOrderId != null" >
+        crm_order_id = #{crmOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="invoice != null" >
+        invoice = #{invoice,jdbcType=INTEGER},
+      </if>
+      <if test="lnvicestate != null" >
+        lnvicestate = #{lnvicestate,jdbcType=TINYINT},
+      </if>
+      <if test="giveReason != null" >
+        give_reason = #{giveReason,jdbcType=VARCHAR},
+      </if>
+      <if test="channelBatchId != null" >
+        channel_batch_id = #{channelBatchId,jdbcType=INTEGER},
+      </if>
+      <if test="channelBatchName != null" >
+        channel_batch_name = #{channelBatchName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.base.entity.AomengOrder" >
+    update aomeng_order
+    set actionId = #{actionid,jdbcType=INTEGER},
+      course_type_id = #{courseTypeId,jdbcType=VARCHAR},
+      order_time = #{orderTime,jdbcType=TIMESTAMP},
+      sale_name = #{saleName,jdbcType=VARCHAR},
+      money = #{money,jdbcType=INTEGER},
+      buy_class = #{buyClass,jdbcType=INTEGER},
+      teacher_id = #{teacherId,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      student_id = #{studentId,jdbcType=VARCHAR},
+      unit_price = #{unitPrice,jdbcType=DOUBLE},
+      is_send_gold = #{isSendGold,jdbcType=INTEGER},
+      exchange_order_id = #{exchangeOrderId,jdbcType=VARCHAR},
+      uuid = #{uuid,jdbcType=VARCHAR},
+      unusedet_order_id = #{unusedetOrderId,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      contract_status = #{contractStatus,jdbcType=VARCHAR},
+      lesson_id = #{lessonId,jdbcType=VARCHAR},
+      student_num = #{studentNum,jdbcType=INTEGER},
+      contract_extra = #{contractExtra,jdbcType=VARCHAR},
+      cancel_note = #{cancelNote,jdbcType=VARCHAR},
+      creator_id = #{creatorId,jdbcType=VARCHAR},
+      remove_class = #{removeClass,jdbcType=INTEGER},
+      card_name = #{cardName,jdbcType=VARCHAR},
+      card_idcard_number = #{cardIdcardNumber,jdbcType=VARCHAR},
+      sign_time = #{signTime,jdbcType=TIMESTAMP},
+      sign_ip = #{signIp,jdbcType=VARCHAR},
+      crm_order_id = #{crmOrderId,jdbcType=VARCHAR},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      invoice = #{invoice,jdbcType=INTEGER},
+      lnvicestate = #{lnvicestate,jdbcType=TINYINT},
+      give_reason = #{giveReason,jdbcType=VARCHAR},
+      channel_batch_id = #{channelBatchId,jdbcType=INTEGER},
+      channel_batch_name = #{channelBatchName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
